@@ -1,9 +1,14 @@
 <div class="container">
-  <a class="btn btn-primary" [routerLink]="['../casas']">Inmoviliaria</a>
 
   <div class="lista col-xs-3">
+    <a class="btn btn-primary" [routerLink]="['../casas']">Inmoviliaria</a>
+
     <ul>
-      <li *ngFor="let casa of casas">{{casa.nombre}}</li>
+      <li *ngFor="let casa of casas">
+        {{casa.nombre}}
+        <span class="glyphicon glyphicon-pencil btn btn-default" (click)="modificar(casa)"></span>
+        <span class="glyphicon glyphicon-remove btn btn-danger" (click)="eliminar(casa)"></span>
+      </li>
     </ul>
   </div>
 
@@ -18,9 +23,12 @@
       <input formControlName="precio" class="form-control">
     </div>
 
-    <div class="form-group">
-      <label for="direccion">Direccion:</label>
-      <input formControlName="direccion" class="form-control">
+    <label>Alquiler: </label>
+    <div class="form-group radio form-inline">
+      <label>
+        <input type="radio" formControlName="alquiler" value="0">Alquiler</label>
+      <label>
+        <input type="radio" formControlName="alquiler" value="1">Venta</label>
     </div>
 
     <div class="form-group">
@@ -28,22 +36,47 @@
       <input formControlName="habitaciones" class="form-control">
     </div>
 
-
-    <div formArrayName="servicios">
-
-      <label for="servicios">Servicios: </label>
-
-      <div *ngFor="let servicio of formulario.controls.servicios.controls; let i=index" class="form-group checkbox form-inline">
-        <div [formGroupName]="i">
-          <label>
-            <input type="checkbox" checked="{{servicio.controls.disponible.value}}">
-            {{servicio.controls.nombre.value}}
-          </label>
-        </div>
-      </div>
+    <div class="form-group">
+      <img [src]="casa.foto" alt="casa.nombre">
+      <label for="foto">Foto:</label>
+      <input formControlName="foto" class="form-control">
     </div>
 
-    <input type="submit" class="btn btn-success" value="Crear">
+    <div class="form-group">
+      <label for="direccion">Direccion:</label>
+      <input formControlName="direccion" class="form-control">
+    </div>
+
+
+
+
+    <label for="servicios">Servicios: </label>
+
+    <div class="form-group checkbox form-inline">
+
+      <label>
+        <input type="checkbox" formControlName="tv"> TV
+      </label>
+
+      <label>
+        <input type="checkbox" formControlName="wc"> WC
+      </label>
+
+      <label>
+        <input type="checkbox" formControlName="jardin"> Jardin
+      </label>
+
+      <label>
+        <input type="checkbox" formControlName="cocina"> Cocina
+      </label>
+
+    </div>
+
+
+    <input type="submit" *ngIf="crearbtn" class="btn btn-success" value="Crear">
+    <input type="submit" *ngIf="!crearbtn" class="btn btn-default" value="Modificar">
+
+    <input type="button" class="btn btn-danger" value="Reset" (click)="limpiarForm()">
   </form>
 
 

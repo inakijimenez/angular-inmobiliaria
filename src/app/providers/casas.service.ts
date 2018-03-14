@@ -21,4 +21,13 @@ export class CasasService {
     return this.http.get(url);
    }
 
+   post(casa): Observable<any>{
+    console.log('post %o', casa);
+    return null;
+   }
+
+   put(casa): Observable<any>{
+    console.log('put %o', casa);
+    return null;
+   }
 }

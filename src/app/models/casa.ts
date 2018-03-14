@@ -18,7 +18,12 @@ export class Casa {
         this.habitaciones = 3;
         this.foto = 'https://image.freepik.com/iconos-gratis/casa_318-42210.jpg';
         this.direccion = 'bilbao';
-        this.servicios = [];
+        this.servicios = [
+            {nombre: 'tv', disponible: false},
+            {nombre: 'wc', disponible: false},
+            {nombre: 'jardin', disponible: false},
+            {nombre: 'cocina', disponible: false}
+        ];
 
     }
 }

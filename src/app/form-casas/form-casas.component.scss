@@ -1,0 +1,33 @@
+ul{
+    list-style: none;
+    padding: 0;
+
+    li{
+        background-color: yellowgreen;
+        color: white;
+        padding: 10px;
+        border: solid 1px black;
+
+        span{
+            cursor: pointer;
+            padding: 2px;
+        }
+
+        
+    }
+}
+
+form{
+
+    img {
+        display: block;
+        height: 200px;
+        max-width: auto;
+        
+    }
+
+    .checkbox{
+        display: flex;
+        justify-content: space-around;
+    }
+}
