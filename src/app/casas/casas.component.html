@@ -1,20 +1,20 @@
 <div class="izq col-xs-5">
-  <a class="btn btn-primary" [routerLink]="['form-casas']">Nuevo / Modificar</a>
+  <a class="btn btn-primary" [routerLink]="['../form-casas']">Nuevo / Modificar</a>
   <div class="filtros">
     <div class="form-group filtro">
       <label for="filtro">Filtro: </label>
-      <input type="text" id="filtro" [(ngModel)]="searchtext">
+      <input type="text" id="filtro" [(ngModel)]="searchtext" placeholder="Busqueda por nombre o direccion">
     </div>
 
     <div class="alquiler-venta">
       <div class="checkbox-inline">
         <label>
-          <input type="checkbox" checked [(ngModel)]="alquiler" (change)="printAlquiler()"> Alquiler
+          <input type="checkbox" [(ngModel)]="alquiler"> Alquiler
         </label>
       </div>
       <div class="checkbox-inline">
         <label>
-          <input type="checkbox" checked [(ngModel)]="venta"> Venta
+          <input type="checkbox" [(ngModel)]="venta"> Venta
         </label>
       </div>
     </div>
@@ -22,9 +22,9 @@
     <div class="form-group precio">
       <span>Precio </span>
       <label for="min">min: </label>
-      <input type="number" id="min">
+      <input type="number" id="min" [(ngModel)]="min">
       <label for="max"> max: </label>
-      <input type="number" id="max">
+      <input type="number" id="max" [(ngModel)]="max">
     </div>
 
   </div>
@@ -36,7 +36,7 @@
 
   <div class="cards">
     <ul>
-      <li *ngFor="let casa of casas | casas : searchtext : alquiler">
+      <li *ngFor="let casa of casas | casasPipe : searchtext : alquiler : venta : min : max">
         <div class="item">
           <img src={{casa.foto}} alt={{casa.nombre}} />
           <div class="datos">

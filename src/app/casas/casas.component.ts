@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Casa } from '../models/casa';
 import { CasasService } from '../providers/casas.service';
-import { CasasFilterPipe } from '../pipes/casasFilter';
+
 
 
 @Component({
@@ -15,6 +15,9 @@ export class CasasComponent implements OnInit {
   casa: Casa;
   alquiler: boolean;
   venta: boolean;
+  min: number;
+  max: number;
+  casasFiltradas: Casa[];
  
 
   constructor( private casasService : CasasService ) { 
@@ -22,8 +25,7 @@ export class CasasComponent implements OnInit {
     
     this.casas = [];
     this.casa = new Casa;
-    this.alquiler = true;
-    this.venta = true;
+  
   }
 
   ngOnInit() {
@@ -45,8 +47,4 @@ export class CasasComponent implements OnInit {
     //console.log('%o', this.casa);
   }
 
-  printAlquiler(){
-    console.log('alquiler ' + this.alquiler);
-    console.log(this.casas);
-  }
 }

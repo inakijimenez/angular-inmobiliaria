@@ -10,13 +10,12 @@ import { AppRouter } from './app.route';
 import { CasasService } from './providers/casas.service';
 
 //pipes
-import { CasasFilterPipe } from './pipes/casasFilter';
+import { CasasPipe } from './pipes/casas.pipe';
 
 //components
 import { AppComponent } from './app.component';
 import { CasaDetalleComponent } from './casas/casa-detalle/casa-detalle.component';
 import { CasasComponent } from './casas/casas.component';
-import { CasasPipe } from './pipes/casas.pipe';
 import { FormCasasComponent } from './form-casas/form-casas.component';
 
 
@@ -27,7 +26,6 @@ import { FormCasasComponent } from './form-casas/form-casas.component';
     AppComponent,
     CasaDetalleComponent,
     CasasComponent,
-    CasasFilterPipe,
     CasasPipe,
     FormCasasComponent
   ],

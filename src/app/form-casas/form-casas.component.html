@@ -1,3 +1,54 @@
-<p>
-  form-casas works!
-</p>
+<div class="container">
+  <a class="btn btn-primary" [routerLink]="['../casas']">Inmoviliaria</a>
+
+  <div class="lista col-xs-3">
+    <ul>
+      <li *ngFor="let casa of casas">{{casa.nombre}}</li>
+    </ul>
+  </div>
+
+  <form class="col-xs-9" novalidate (ngSubmit)="submit($event)" [formGroup]="formulario">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input formControlName="nombre" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="precio">Precio:</label>
+      <input formControlName="precio" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="direccion">Direccion:</label>
+      <input formControlName="direccion" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="habitaciones">Habitaciones:</label>
+      <input formControlName="habitaciones" class="form-control">
+    </div>
+
+
+    <div formArrayName="servicios">
+
+      <label for="servicios">Servicios: </label>
+
+      <div *ngFor="let servicio of formulario.controls.servicios.controls; let i=index" class="form-group checkbox form-inline">
+        <div [formGroupName]="i">
+          <label>
+            <input type="checkbox" checked="{{servicio.controls.disponible.value}}">
+            {{servicio.controls.nombre.value}}
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <input type="submit" class="btn btn-success" value="Crear">
+  </form>
+
+
+
+
+
+</div>
+<!-- container -->

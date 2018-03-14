@@ -8,9 +8,10 @@ import { FormCasasComponent } from './form-casas/form-casas.component';
 
 //Rutas de nuestra App
 const appRoutes: Routes = [
-    { path: '',            component: CasasComponent },    
+        
     { path: 'casas',       component: CasasComponent },
-    { path: 'form-casas',  component: FormCasasComponent }
+    { path: 'form-casas',  component: FormCasasComponent },
+    { path: '',            component: CasasComponent }
     //{ path: '**',           component: Page404Component }
   ];
 
