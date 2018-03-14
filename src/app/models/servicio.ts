@@ -4,7 +4,7 @@ export class Servicio{
     disponible: boolean;
 
     constructor(){
-        this.nombre = '';
+        this.nombre = 'servicio';
         this.disponible = false;
     }
 }

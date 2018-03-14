@@ -1,11 +1,32 @@
-<div class="item">
-    <img src={{casa.foto}} alt={{casa.nombre}} />
-    <div class="datos">
-      <p class="nombre">{{casa.nombre}}</p>
-
-      <p class="precio">
-        <em>{{casa.precio}}€</em>
-      </p>
-    </div>
-    
+<div class="detalle">
+  <span class="alquiler" *ngIf="casa.alquiler">ALQUILER</span>
+  <span class="venta" *ngIf="!casa.alquiler">Venta</span>
+  <img src={{casa.foto}} alt={{casa.nombre}} />
+  <div class="datos">
+    <p class="nombre">{{casa.nombre}}</p>
+    <p class="precio">
+      <em>{{casa.precio}}€</em>
+    </p>
   </div>
+
+  <div class="direccion">
+    <span>
+      <i class="fa fa-map-marker" aria-hidden="true"></i>
+    </span><b> Direccion:</b> {{casa.direccion}}
+  </div>
+  <div class="habitaciones">
+    <span>
+      <i class="fa fa-home" aria-hidden="true"></i>
+    </span><b>Habitaciones:</b> {{casa.habitaciones}}
+  </div>
+
+  <div class="servicios">
+    <span><b>Servicios:</b></span>
+    <div *ngFor="let servicio of casa.servicios" class="servicio">
+      <label>
+        <input type="checkbox" [checked]="servicio.disponible"> {{servicio.nombre}}
+      </label>
+    </div>
+  </div>
+
+</div>

@@ -1,34 +1,61 @@
 <div class="izq col-xs-5">
-    <div class="filtros">
-      <p>filtros</p>
+  <a class="btn btn-primary" [routerLink]="['form-casas']">Nuevo / Modificar</a>
+  <div class="filtros">
+    <div class="form-group filtro">
+      <label for="filtro">Filtro: </label>
+      <input type="text" id="filtro" [(ngModel)]="searchtext">
     </div>
 
-    <div class="cards">
-      <ul>
-        <li *ngFor="let casa of casas">
-          <div class="item">
-            <img src={{casa.foto}} alt={{casa.nombre}} />
-            <div class="datos">
-              <p class="nombre">{{casa.nombre}}</p>
+    <div class="alquiler-venta">
+      <div class="checkbox-inline">
+        <label>
+          <input type="checkbox" checked [(ngModel)]="alquiler" (change)="printAlquiler()"> Alquiler
+        </label>
+      </div>
+      <div class="checkbox-inline">
+        <label>
+          <input type="checkbox" checked [(ngModel)]="venta"> Venta
+        </label>
+      </div>
+    </div>
 
-              <p class="precio">
-                <em>{{casa.precio}}€</em>
-              </p>
-            </div>
-            <button class="detalle" type="button">Ver Detalles</button>
+    <div class="form-group precio">
+      <span>Precio </span>
+      <label for="min">min: </label>
+      <input type="number" id="min">
+      <label for="max"> max: </label>
+      <input type="number" id="max">
+    </div>
+
+  </div>
+  <!-- filtros -->
+
+
+
+
+
+  <div class="cards">
+    <ul>
+      <li *ngFor="let casa of casas | casas : searchtext : alquiler">
+        <div class="item">
+          <img src={{casa.foto}} alt={{casa.nombre}} />
+          <div class="datos">
+            <p class="nombre">{{casa.nombre}}</p>
+
+            <p class="precio">
+              <em>{{casa.precio}}€</em>
+            </p>
           </div>
+          <button class="detalle" type="button" (click)="verCasa(casa)">Ver Detalles</button>
+        </div>
 
-        </li>
-      </ul>
-    </div>
+      </li>
+    </ul>
   </div>
-  <!-- izq -->
+</div>
+<!-- izq -->
 
-  <div class="dcha col-xs-7">
-    <app-casa-detalle ></app-casa-detalle>
-  </div>
-  <!-- dcha -->
-
-
-
-
+<div class="dcha col-xs-7">
+  <app-casa-detalle [casa]="casa"></app-casa-detalle>
+</div>
+<!-- dcha -->

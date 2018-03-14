@@ -4,6 +4,22 @@
 
     .filtros{
         border:solid 1px yellow; 
+        padding: 10px;
+      
+        .alquiler-venta{
+            display: block;
+                        
+        }
+
+        .precio{
+            span{
+                font-weight: bold;
+            }
+            #min, #max{
+                display: inline-block;
+                max-width: 25%;
+            }
+        }
     }
     .cards{
         border:solid 1px green;
@@ -23,8 +39,11 @@
                     background-color: #fff;
                     position: relative;              
                     padding: 10px;
-                    height: 260px;
+                    height: 220px;
                     border: solid 1px grey;
+                    -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+                    -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+                    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
                 
                     img {
                         display: block;
@@ -34,10 +53,15 @@
                     }
                     .datos {
                         padding: 5px;
-                        font-size: 16px;
+                        font-size: 13px;
                         display: flex;
                         justify-content: space-between;
                         margin: 0 0 10px 0;
+                        overflow: hidden;
+
+                        .nombre{
+                            font-weight: bold;
+                        }
                         
                     }
                     button {
