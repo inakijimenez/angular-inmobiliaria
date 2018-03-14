@@ -1,0 +1,34 @@
+<div class="izq col-xs-5">
+    <div class="filtros">
+      <p>filtros</p>
+    </div>
+
+    <div class="cards">
+      <ul>
+        <li *ngFor="let casa of casas">
+          <div class="item">
+            <img src={{casa.foto}} alt={{casa.nombre}} />
+            <div class="datos">
+              <p class="nombre">{{casa.nombre}}</p>
+
+              <p class="precio">
+                <em>{{casa.precio}}€</em>
+              </p>
+            </div>
+            <button class="detalle" type="button">Ver Detalles</button>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- izq -->
+
+  <div class="dcha col-xs-7">
+    <app-casa-detalle ></app-casa-detalle>
+  </div>
+  <!-- dcha -->
+
+
+
+

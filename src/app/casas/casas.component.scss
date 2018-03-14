@@ -1,0 +1,67 @@
+.izq{
+    
+    border:solid 1px red;
+
+    .filtros{
+        border:solid 1px yellow; 
+    }
+    .cards{
+        border:solid 1px green;
+
+        ul{
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: space-around;
+
+            li{      
+                padding: 0;
+                margin: 2%;
+                width: 44%;               
+
+                .item {
+                    background-color: #fff;
+                    position: relative;              
+                    padding: 10px;
+                    height: 260px;
+                    border: solid 1px grey;
+                
+                    img {
+                        display: block;
+                        margin: auto;
+                        max-width: 100%;
+                        border-bottom: 1px solid #ccc;
+                    }
+                    .datos {
+                        padding: 5px;
+                        font-size: 16px;
+                        display: flex;
+                        justify-content: space-between;
+                        margin: 0 0 10px 0;
+                        
+                    }
+                    button {
+                        border: 1px solid #722A1B;
+                        padding: 4px 14px;
+                        width: 80%;
+                        background-color: #fff;
+                        color: #722A1B;
+                        text-transform: uppercase;
+                        display: block;
+                        margin: auto;
+                        font-weight: bold;
+                        cursor: pointer;
+                        position: absolute;
+                        bottom: -5%;
+                        left: 10%;
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+
+.dcha{
+    border:solid 1px blue;
+}

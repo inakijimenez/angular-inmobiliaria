@@ -3,11 +3,15 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { CasaDetalleComponent } from './casas/casa-detalle/casa-detalle.component';
+import { CasasComponent } from './casas/casas.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CasaDetalleComponent,
+    CasasComponent
   ],
   imports: [
     BrowserModule
