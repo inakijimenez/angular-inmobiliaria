@@ -14,9 +14,6 @@ export class CasasPipe implements PipeTransform {
 
     this.casasFiltradas = [];
 
-    this.casasFiltradas = [];
-
-
     if (alquiler && !venta) {
       casas.forEach((c) => {
         if (c.alquiler) {
