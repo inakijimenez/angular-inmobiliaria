@@ -3,6 +3,10 @@
     padding: 10px;
     border: solid 1px grey;
     position: relative;
+    margin-top: 25px;
+    -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
 
     .alquiler{
         position: absolute;
@@ -39,8 +43,9 @@
         font-size: 16px;
         display: flex;
         justify-content: space-between;
-        margin: 0 0 10px 0;
+        margin: 10px 0 10px 0;
         border-top: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
 
         .nombre{
             font-weight: bold;
@@ -52,7 +57,7 @@
     }
 
     .servicios{
-        border: 1px solid blue;
+        //border: 1px solid blue;
         display: flex;
         justify-content: space-around;
         flex-direction: row;

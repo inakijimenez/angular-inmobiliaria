@@ -2,7 +2,7 @@ import { Servicio } from "./servicio";
 
 export class Casa {
 
-    
+    id: number;
     nombre: string;
     precio: number;
     alquiler: boolean;

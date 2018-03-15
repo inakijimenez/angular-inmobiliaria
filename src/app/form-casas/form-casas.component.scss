@@ -1,12 +1,22 @@
+.container{
+    padding-top: 25px;
+}
+
+.lista .inmobiliaria-btn {
+    margin-bottom: 5px;
+}
+
 ul{
     list-style: none;
     padding: 0;
 
     li{
-        background-color: yellowgreen;
+        background-color: green;
         color: white;
         padding: 10px;
         border: solid 1px black;
+        display: flex;
+        justify-content: space-between;        
 
         span{
             cursor: pointer;
@@ -19,15 +29,62 @@ ul{
 
 form{
 
-    img {
-        display: block;
-        height: 200px;
-        max-width: auto;
-        
+    label {
+        display: inline-block;
+        width:20%;
+    }
+    input{
+        display: inline-block;
+        width:75%;
     }
 
-    .checkbox{
+    .radio{
         display: flex;
-        justify-content: space-around;
+        justify-content: flex-start;
+                
+        input{
+            width: auto;
+        }
+        span{
+            font-weight: bold;
+        }
+    }
+
+    .foto{
+        position: relative;
+        min-height: 200px;
+                
+        img {
+            position: absolute;
+            right: 5%;
+            height: 200px;
+            max-width: 35%;
+            -webkit-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+            -moz-box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+            box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+        }
+
+        input{
+            display: block;
+            width: 55%;
+        }
+
+    }
+
+    
+
+    .checkbox{
+
+        display: flex;
+        justify-content: flex-start;
+        
+        input{
+            width: auto;
+        }
+    }
+
+    .btn{
+        display: inline-block;
+        width: 45%;
     }
 }

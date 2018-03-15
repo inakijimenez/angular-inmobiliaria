@@ -24,8 +24,8 @@ export class CasasComponent implements OnInit {
     console.log('CasasComponent constructor');
     
     this.casas = [];
-    this.casa = new Casa;
-  
+    this.casa = new Casa();
+   
   }
 
   ngOnInit() {
@@ -36,15 +36,10 @@ export class CasasComponent implements OnInit {
         data.forEach(el => {
           this.casas.push(el);          
         });
-        this.casa = this.casas[0];
+        this.casa = this.casas[0] || new Casa();
+        this.alquiler = true;
+        this.venta = true;
       }
     );
   }
-
-  verCasa(casa){
-    console.log('CasasComponent verCasa');
-    this.casa= casa;
-    //console.log('%o', this.casa);
-  }
-
 }

@@ -23,11 +23,19 @@ export class CasasService {
 
    post(casa): Observable<any>{
     console.log('post %o', casa);
-    return null;
+    let url = GLOBAL.endpoint + '/casas';
+    return this.http.post(url, casa);
    }
 
    put(casa): Observable<any>{
     console.log('put %o', casa);
-    return null;
+    let url = GLOBAL.endpoint + '/casas/' + casa.id;
+    return this.http.put(url, casa);
+   }
+
+   delete(casa){
+    console.log('delete %o', casa);
+    let url = GLOBAL.endpoint + '/casas/' + casa.id;
+    return this.http.delete(url, casa);
    }
 }

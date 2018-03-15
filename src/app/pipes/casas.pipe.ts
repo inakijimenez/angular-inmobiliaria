@@ -6,36 +6,59 @@ import { Casa } from '../models/casa';
 })
 export class CasasPipe implements PipeTransform {
 
-  casasFiltradas: Casa[];
-
-
   transform(casas: Casa[], searchtext: string, alquiler: boolean, venta: boolean, min: number, max: number): Casa[] {
 
+    let casasFiltradas: Casa[];
+    let casasTemp: Casa[];
 
-    this.casasFiltradas = [];
+    if (!casas) return [];
 
+    casasFiltradas = [];
+    casasTemp = [];
+
+    let eliminados = 0;
     if (alquiler && !venta) {
-      casas.forEach((c) => {
+      casas.forEach((c, i) => {
         if (c.alquiler) {
-          this.casasFiltradas.push(c);
+          casasFiltradas.push(c);
         }
       });
-    } else if (venta && !alquiler){
-      casas.forEach((c) => {
+    } else if (venta && !alquiler) {
+      casas.forEach((c, i) => {
         if (!c.alquiler) {
-          this.casasFiltradas.push(c);
+          casasFiltradas.push(c);
         }
       });
     } else {
-      this.casasFiltradas = casas;
+      casasFiltradas = casas;
     }
 
+    if (min) {
+      casasFiltradas.forEach(c => {
+        if (c.precio >= min) {
+          casasTemp.push(c);
+        }
+      });
+      casasFiltradas = casasTemp;
+    }
+    casasTemp = [];
+
+    if (max) {
+      casasFiltradas.forEach(c => {
+        if (c.precio <= max) {
+          casasTemp.push(c);
+        }
+      });
+      casasFiltradas = casasTemp;
+    }
+    casasTemp = [];
+
     if (!searchtext) {
-      return this.casasFiltradas;
+      return casasFiltradas;
     } else {
       searchtext = searchtext.toLowerCase();
       let casa = '';
-      return this.casasFiltradas.filter(it => {
+      return casasFiltradas.filter(it => {
         casa = it.nombre + it.direccion;
         casa = casa.toLowerCase();
         return casa.includes(searchtext);

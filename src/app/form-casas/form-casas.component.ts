@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CasasService } from '../providers/casas.service';
 import { Servicio } from '../models/servicio';
 import { Casa } from '../models/casa';
@@ -12,7 +12,7 @@ import { Casa } from '../models/casa';
 export class FormCasasComponent implements OnInit {
 
   formulario: FormGroup;
-  
+
   casas: Casa[];
   casa: Casa;
 
@@ -22,7 +22,7 @@ export class FormCasasComponent implements OnInit {
     console.log('FormCasasComponent constructor');
 
     this.casas = [];
-
+    this.casa = new Casa();
     this.limpiarForm();
 
   }
@@ -35,6 +35,9 @@ export class FormCasasComponent implements OnInit {
   }
 
   getCasas() {
+
+    this.casas = [];
+
     this.casasService.getCasas()
       .subscribe(data => {
         data.forEach(el => {
@@ -45,12 +48,12 @@ export class FormCasasComponent implements OnInit {
 
   limpiarForm() {
 
-    this.casa = new Casa;
+    this.casa = new Casa();
 
     this.formulario = this.fb.group({
-      nombre: '',
-      precio: 0,
-      alquiler: '0',
+      nombre: ['', [Validators.required, Validators.minLength(3)] ], 
+      precio: [0, Validators.required],
+      alquiler: ['0', Validators.required],
       habitaciones: 0,
       foto: this.casa.foto,
       direccion: '',
@@ -62,15 +65,15 @@ export class FormCasasComponent implements OnInit {
 
     this.crearbtn = true;
   }
-  
+
 
   modificar(casa) {
     this.crearbtn = false;
     this.casa = casa;
     this.formulario = this.fb.group({
-      nombre: this.casa.nombre,
-      precio: this.casa.precio,
-      alquiler: (this.casa.alquiler) ? '0' : '1',
+      nombre: [this.casa.nombre, [Validators.required, Validators.minLength(3)]],
+      precio: [this.casa.precio, Validators.required],
+      alquiler: [(this.casa.alquiler) ? '0' : '1', Validators.required],
       habitaciones: this.casa.habitaciones,
       foto: this.casa.foto,
       direccion: this.casa.direccion,
@@ -79,10 +82,19 @@ export class FormCasasComponent implements OnInit {
       jardin: this.casa.servicios[2].disponible,
       cocina: this.casa.servicios[3].disponible
     });
+
   }
 
   eliminar(casa) {
     console.log('eliminar %o', casa);
+    this.casasService.delete(casa)
+    .subscribe(data=>{
+      console.log('Se ha eliminado el registro %o', data);
+      this.getCasas();
+    });
+
+    
+    
   }
 
   submit(e) {
@@ -90,9 +102,21 @@ export class FormCasasComponent implements OnInit {
     this.mapearFomrulario(this.formulario);
 
     if (this.crearbtn) {
-      this.casasService.post(this.casa);
+      this.casasService.post(this.casa)
+        .subscribe(data => {
+          console.log('Se ha creado %o', data);
+        }, error => {
+          console.log('Error al crear casa');
+        });
+        this.getCasas();
     } else {
-      this.casasService.put(this.casa);
+      this.casasService.put(this.casa)
+      .subscribe(data => {
+        console.log('Se ha modificado %o', data);
+      }, error =>{
+        console.log('Error al crear casa');
+      });
+      this.getCasas();
     }
   }
 
@@ -110,11 +134,12 @@ export class FormCasasComponent implements OnInit {
     this.casa.habitaciones = form.value.habitaciones;
     this.casa.foto = form.value.foto;
     this.casa.direccion = form.value.direccion;
-    
+
     this.casa.servicios[0].disponible = form.value.tv;
     this.casa.servicios[1].disponible = form.value.wc;
     this.casa.servicios[2].disponible = form.value.jardin;
     this.casa.servicios[3].disponible = form.value.cocina;
 
   }
+
 }

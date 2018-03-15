@@ -1,6 +1,7 @@
 <div class="izq col-xs-5">
-  <a class="btn btn-primary" [routerLink]="['../form-casas']">Nuevo / Modificar</a>
+
   <div class="filtros">
+    <a class="btn btn-default" [routerLink]="['../form-casas']">Nuevo / Modificar</a>
     <div class="form-group filtro">
       <label for="filtro">Filtro: </label>
       <input type="text" id="filtro" [(ngModel)]="searchtext" placeholder="Busqueda por nombre o direccion">

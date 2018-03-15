@@ -1,51 +1,61 @@
 <div class="container">
 
-  <div class="lista col-xs-3">
-    <a class="btn btn-primary" [routerLink]="['../casas']">Inmoviliaria</a>
+  <div class="lista col-xs-4">
+    <a class="btn btn-default btn-block inmobiliaria-btn" [routerLink]="['../casas']">Inmobiliaria</a>
 
     <ul>
       <li *ngFor="let casa of casas">
         {{casa.nombre}}
-        <span class="glyphicon glyphicon-pencil btn btn-default" (click)="modificar(casa)"></span>
-        <span class="glyphicon glyphicon-remove btn btn-danger" (click)="eliminar(casa)"></span>
+        <div class="botones">
+          <span class="glyphicon glyphicon-pencil btn btn-default" (click)="modificar(casa)"></span>
+          <span class="glyphicon glyphicon-remove btn btn-danger" (click)="eliminar(casa)"></span>
+        </div>
       </li>
     </ul>
   </div>
 
-  <form class="col-xs-9" novalidate (ngSubmit)="submit($event)" [formGroup]="formulario">
-    <div class="form-group">
+  <form class="col-xs-8" novalidate (ngSubmit)="submit($event)" [formGroup]="formulario">
+    <div class="form-group form-inline">
       <label for="nombre">Nombre:</label>
       <input formControlName="nombre" class="form-control">
+      <p class="text-danger" *ngIf="formulario.controls.nombre.invalid && formulario.controls.nombre.touched">El nombre es requerido y al menos debe contener 3 caracteres</p>
     </div>
 
-    <div class="form-group">
+    <div class="form-group form-inline">
       <label for="precio">Precio:</label>
       <input formControlName="precio" class="form-control">
+      <p class="text-danger" *ngIf="formulario.controls.precio.invalid && formulario.controls.precio.touched">El precio es requerido</p>
     </div>
 
-    <label>Alquiler: </label>
-    <div class="form-group radio form-inline">
-      <label>
-        <input type="radio" formControlName="alquiler" value="0">Alquiler</label>
-      <label>
-        <input type="radio" formControlName="alquiler" value="1">Venta</label>
-    </div>
-
-    <div class="form-group">
+    <div class="form-group form-inline">
       <label for="habitaciones">Habitaciones:</label>
       <input formControlName="habitaciones" class="form-control">
     </div>
 
-    <div class="form-group">
-      <img [src]="casa.foto" alt="casa.nombre">
+    <div class="form-group form-inline">
+      <label for="direccion">Direccion:</label>
+      <input formControlName="direccion" class="form-control">
+    </div>
+
+    <div class="form-group radio form-inline">
+      <label>
+        <input type="radio" formControlName="alquiler" value="0">
+        <span> Alquiler</span>
+      </label>
+      <label>
+        <input type="radio" formControlName="alquiler" value="1">
+        <span> Venta</span>
+      </label>
+    </div>
+
+    <div class="form-group foto">
+      <img [src]="formulario.controls.foto.value" [alt]="formulario.controls.nombre.value">
+
       <label for="foto">Foto:</label>
       <input formControlName="foto" class="form-control">
     </div>
 
-    <div class="form-group">
-      <label for="direccion">Direccion:</label>
-      <input formControlName="direccion" class="form-control">
-    </div>
+
 
 
 
