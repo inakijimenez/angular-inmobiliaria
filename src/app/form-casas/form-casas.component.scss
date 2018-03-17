@@ -77,9 +77,15 @@ form{
 
         display: flex;
         justify-content: flex-start;
+
+        .servicio{
+            width: 100px;
+            margin-bottom: 10px;
+        }
         
         input{
             width: auto;
+            height: auto;
         }
     }
 

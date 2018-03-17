@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { CasasService } from '../providers/casas.service';
 import { Servicio } from '../models/servicio';
 import { Casa } from '../models/casa';
@@ -32,6 +32,7 @@ export class FormCasasComponent implements OnInit {
 
     this.getCasas();
 
+    
   }
 
   getCasas() {
@@ -57,11 +58,17 @@ export class FormCasasComponent implements OnInit {
       habitaciones: 0,
       foto: this.casa.foto,
       direccion: '',
-      tv: false,
-      wc: false,
-      jardin: false,
-      cocina: false
+      // tv: false,
+      // wc: false,
+      // jardin: false,
+      // cocina: false,
+      servicios: this.fb.array([])
     });
+
+    //PRIMERO HAY QUE CREAR UN FOR ARRAY VACIO PARA PODER ACCEDER AL FORMULARIO Y LLENAR EL FORMARRAY DE FORMA DINAMICA
+    this.crearServiciosFG(this.casa);
+    let servicios = <FormArray>this.formulario.controls.servicios;
+    //console.log(servicios.controls[0].value.disponible);
 
     this.crearbtn = true;
   }
@@ -77,12 +84,14 @@ export class FormCasasComponent implements OnInit {
       habitaciones: this.casa.habitaciones,
       foto: this.casa.foto,
       direccion: this.casa.direccion,
-      tv: this.casa.servicios[0].disponible,
-      wc: this.casa.servicios[1].disponible,
-      jardin: this.casa.servicios[2].disponible,
-      cocina: this.casa.servicios[3].disponible
+      // tv: this.casa.servicios[0].disponible,
+      // wc: this.casa.servicios[1].disponible,
+      // jardin: this.casa.servicios[2].disponible,
+      // cocina: this.casa.servicios[3].disponible,
+      servicios: this.fb.array([])
     });
-
+    
+    this.crearServiciosFG(casa);
   }
 
   eliminar(casa) {
@@ -93,7 +102,7 @@ export class FormCasasComponent implements OnInit {
       this.getCasas();
     });
 
-    
+    this.limpiarForm();
     
   }
 
@@ -118,6 +127,8 @@ export class FormCasasComponent implements OnInit {
       });
       this.getCasas();
     }
+
+    this.limpiarForm();
   }
 
   mapearFomrulario(form) {
@@ -135,11 +146,28 @@ export class FormCasasComponent implements OnInit {
     this.casa.foto = form.value.foto;
     this.casa.direccion = form.value.direccion;
 
-    this.casa.servicios[0].disponible = form.value.tv;
-    this.casa.servicios[1].disponible = form.value.wc;
-    this.casa.servicios[2].disponible = form.value.jardin;
-    this.casa.servicios[3].disponible = form.value.cocina;
+    // this.casa.servicios[0].disponible = form.value.tv;
+    // this.casa.servicios[1].disponible = form.value.wc;
+    // this.casa.servicios[2].disponible = form.value.jardin;
+    // this.casa.servicios[3].disponible = form.value.cocina;
+
+    this.casa.servicios.forEach( (s,i) =>{
+      s.nombre = form.value.servicios[i].nombre;
+      s.disponible = form.value.servicios[i].disponible;
+    })
 
   }
 
+  crearServiciosFG(casa:Casa){
+    console.log(casa.servicios);
+
+    let servicios = <FormArray>this.formulario.get('servicios');
+    
+    casa.servicios.forEach((s)=>{
+      servicios.push(this.fb.group({
+        nombre: s.nombre, disponible: s.disponible
+      }));      
+    });
+    
+  }
 }

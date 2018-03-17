@@ -42,4 +42,8 @@ export class CasasComponent implements OnInit {
       }
     );
   }
+
+  verCasa(casa){
+    this.casa= casa;
+  }
 }
